@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://actor/actormanager.tscn" type="PackedScene" id=1]
+[ext_resource path="res://grid/grid.tscn" type="PackedScene" id=2]
+[ext_resource path="res://obstacle/obstaclemanager.tscn" type="PackedScene" id=3]
+
+[node name="Level" type="YSort"]
+
+[node name="Grid" parent="." instance=ExtResource( 2 )]
+
+[node name="ActorManager" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 0 )
+
+[node name="ObstacleManager" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, 0 )
+[connection signal="register_mover" from="ActorManager" to="Grid" method="_register_mover"]
+[connection signal="register_mover" from="ObstacleManager" to="Grid" method="_register_mover"]

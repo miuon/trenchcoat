@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://grid/gridmanager.gd" type="Script" id=1]
+
+[node name="Manager" type="YSort"]
+position = Vector2( 34, 0 )
+script = ExtResource( 1 )
