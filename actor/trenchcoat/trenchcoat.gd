@@ -85,6 +85,7 @@ func emit_baby(direction):
 	new_baby.position = target_position
 	current_baby_count -= 1
 	update_sprite_for_count()
+	give_focus_to(new_baby)
 
 func return_baby():
 	if current_baby_count >= max_baby_count:
