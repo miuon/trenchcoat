@@ -1,15 +1,16 @@
-extends "res://grid/gridmanager.gd"
+extends GridManager
+class_name ActorManager
 
-func register_mover(mover):
+func register_mover(mover: GridMover) -> void:
 	.register_mover(mover)
 
-func _physics_process(_delta):
+func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_released("cycle"):
 		cycle_focus(get_children())
 
-func cycle_focus(actors):
-	var current_focused_element
-	var new_focused_element
+func cycle_focus(actors: Array):
+	var current_focused_element: Actor
+	var new_focused_element: Actor
 	for i in range(actors.size()):
 		if actors[i].focused:
 			current_focused_element = actors[i]

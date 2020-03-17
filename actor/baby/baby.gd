@@ -1,13 +1,16 @@
-extends "res://actor/actor.gd"
+extends Actor
+class_name Baby
 
-func _process(_delta):
-	var ani = get_node("Pivot/AnimatedSprite")
+func _process(_delta: float) -> void:
+	var ani: AnimatedSprite = get_node("Pivot/AnimatedSprite")
 	if self.moving and not ani.playing:
 		ani.play()
 	if not self.moving and ani.playing:
 		ani.stop()
 
-func move(obstacle, target_position, pushed=false):
+func move(obstacle: GridMover,
+		target_position: Vector2,
+		pushed:bool=false) -> bool:
 	if not obstacle:
 		move_to(target_position)
 		return true
@@ -23,5 +26,5 @@ func move(obstacle, target_position, pushed=false):
 	bump()
 	return false
 
-func is_baby():
+func is_baby() -> bool:
 	return true

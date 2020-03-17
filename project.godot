@@ -8,9 +8,56 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "GridMover",
+"class": "Actor",
+"language": "GDScript",
+"path": "res://actor/actor.gd"
+}, {
+"base": "GridManager",
+"class": "ActorManager",
+"language": "GDScript",
+"path": "res://actor/actormanager.gd"
+}, {
+"base": "Actor",
+"class": "Baby",
+"language": "GDScript",
+"path": "res://actor/baby/baby.gd"
+}, {
+"base": "Label",
+"class": "DemoLabel",
+"language": "GDScript",
+"path": "res://level/demolabel.gd"
+}, {
+"base": "TileMap",
+"class": "Grid",
+"language": "GDScript",
+"path": "res://grid/grid.gd"
+}, {
+"base": "Node2D",
+"class": "GridManager",
+"language": "GDScript",
+"path": "res://grid/gridmanager.gd"
+}, {
+"base": "Node2D",
+"class": "GridMover",
+"language": "GDScript",
+"path": "res://grid/gridmover.gd"
+}, {
+"base": "Actor",
+"class": "Trenchcoat",
+"language": "GDScript",
+"path": "res://actor/trenchcoat/trenchcoat.gd"
+} ]
 _global_script_class_icons={
-
+"Actor": "",
+"ActorManager": "",
+"Baby": "",
+"DemoLabel": "",
+"Grid": "",
+"GridManager": "",
+"GridMover": "",
+"Trenchcoat": ""
 }
 
 [application]
