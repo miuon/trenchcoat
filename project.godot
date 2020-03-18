@@ -48,6 +48,16 @@ _global_script_classes=[ {
 "class": "Trenchcoat",
 "language": "GDScript",
 "path": "res://actor/trenchcoat/trenchcoat.gd"
+}, {
+"base": "Reference",
+"class": "WAT",
+"language": "GDScript",
+"path": "res://addons/WAT/runner/namespace.gd"
+}, {
+"base": "Node",
+"class": "WATTest",
+"language": "GDScript",
+"path": "res://addons/WAT/runner/test.gd"
 } ]
 _global_script_class_icons={
 "Actor": "",
@@ -57,8 +67,14 @@ _global_script_class_icons={
 "Grid": "",
 "GridManager": "",
 "GridMover": "",
-"Trenchcoat": ""
+"Trenchcoat": "",
+"WAT": "",
+"WATTest": ""
 }
+
+[WAT]
+
+Test_Directory="res://tests"
 
 [application]
 
@@ -74,6 +90,10 @@ window/size/resizable=false
 window/vsync/vsync_via_compositor=true
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "WAT" )
 
 [importer_defaults]
 
