@@ -8,10 +8,11 @@ func _register_mover(mover: GridMover) -> void:
 	mover.grid = self
 	mover.position = map_to_world(world_to_map(mover.position))
 
-func mover_at_cell(cell: Vector2) -> GridMover:
+func mover_at_cell(cell: Vector2):
 	for mover in movers.keys():
 		if world_to_map(mover.position) == cell:
 			return mover
+	return false
 
 func get_obstacle(mover: GridMover, direction: Vector2) -> GridMover:
 	var start_cell := world_to_map(mover.position)
