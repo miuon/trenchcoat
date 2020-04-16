@@ -13,3 +13,5 @@ bump_time = 0.2
 
 [node name="BumpTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Area2D" type="Area2D" parent="."]

@@ -79,7 +79,7 @@ Test_Directory="res://tests"
 [application]
 
 config/name="Trenchcoat"
-run/main_scene="res://level/demolevel.tscn"
+run/main_scene="res://level/tutorial/tutorialdemo.tscn"
 config/icon="res://icon.png"
 
 [display]

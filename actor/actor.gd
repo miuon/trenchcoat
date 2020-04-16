@@ -1,13 +1,13 @@
 extends GridMover
 class_name Actor
 
-export var focused = false
+export var focused: bool = false
 
 func _on_ready() -> void:
 	# make sure onfocus stuff gets run
 	self.set_focused(focused)
 
-func _on_physics_process(delta: float) -> void:
+func _on_process(delta: float) -> void:
 	._on_physics_process(delta)
 	var input_direction: Vector2 = get_input_direction()
 	if input_direction:

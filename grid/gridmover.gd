@@ -7,6 +7,7 @@ export var pushable : bool = false
 var grid
 var manager
 
+var move_proposed := false
 var moving := false
 var busy := false
 
@@ -18,37 +19,57 @@ func _ready() -> void:
 func _on_ready() -> void:
 	pass
 
+func _process(delta: float) -> void:
+	_on_process(delta)
+
+func _on_process(_delta: float) -> void:
+	pass
+
 func _physics_process(delta: float) -> void:
+	if move_proposed:
+		evaluate_move()
 	_on_physics_process(delta)
 
 func _on_physics_process(_delta: float) -> void:
 	pass
 
-func try_push(pusher: GridMover) -> bool:
+func try_move(direction: Vector2):
+	return move(direction, false)
+
+func try_push(direction: Vector2) -> bool:
 	if not pushable:
 		return false
-	var direction = (self.position - pusher.position).normalized()
-	return try_move(direction, true)
+	return move(direction, true)
+
+func move(direction: Vector2, pushed:bool=false) -> bool:
+	var target_position = grid.get_move_target(self, direction)
+	$Area2D.position = target_position
+	if bodies:
+		bump()
+		return false
+	elif areas:
+		# TODO: what if there's more than one
+		if len(areas) > 1:
+			position = orig_pos
+			bump()
+			return false
+		var other: GridMover = areas[0].get_parent()
+		var should_move = collide_with(other, direction, pushed)
+		if should_move:
+			execute_move(orig_pos, target_position)
+		return should_move
+	else:
+		execute_move(orig_pos, target_position)
+		return true
+
+func collide_with(other: GridMover,
+		direction: Vector2,
+		pushed:bool=false) -> bool:
+	return other.try_push(direction)
 	
-func try_move(direction: Vector2, pushed:bool=false) -> bool:
-	return move(grid.get_obstacle(self, direction),
-			grid.get_move_target(self, direction),
-			pushed)
-
-func move(obstacle: GridMover,
-		target_position: Vector2,
-		_pushed:bool=false) -> bool:
-	# TODO: clean up, share more code with subclasses
-	if not obstacle:
-		move_to(target_position)
-		return true
-	if obstacle.try_push(self):
-		move_to(target_position)
-		return true
-	bump()
-	return false
-
-func move_to(target_position: Vector2) -> void:
+func execute_move(
+		start_position: Vector2,
+		target_position: Vector2) -> void:
 	moving = true
 	busy = true
 

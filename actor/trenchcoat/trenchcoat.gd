@@ -44,17 +44,10 @@ func _process(_delta: float) -> void:
 	if not self.moving and ani.playing:
 		ani.stop()
 
-func move(obstacle: GridMover,
-		target_position: Vector2,
+func collide_with(other: GridMover,
+		direction: Vector2,
 		_pushed:bool=false) -> bool:
-	if not obstacle:
-		move_to(target_position)
-		return true
-	if obstacle.try_push(self):
-		move_to(target_position)
-		return true
-	bump()
-	return false
+	return other.try_push(direction)
 
 func maybe_start_placing() -> void:
 	if not can_emit_baby():
